@@ -1,0 +1,93 @@
+<?php declare(strict_types=1);
+
+namespace Sakila\Http\Controllers\Api;
+
+use Sakila\Command\Bus\CommandBus;
+use Sakila\Domain\Actor\Commands\AddActorCommand;
+use Sakila\Domain\Actor\Commands\UpdateActorCommand;
+use Sakila\Domain\Actor\Repository\ActorRepository;
+use Sakila\Transformer\Transformer;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class ActorController extends AbstractController
+{
+    /**
+     * @var \Sakila\Domain\Actor\Repository\ActorRepository
+     */
+    private $repository;
+
+    /**
+     * @param \Sakila\Domain\Actor\Repository\ActorRepository $repository
+     * @param \Sakila\Transformer\Transformer                 $transformer
+     */
+    public function __construct(ActorRepository $repository, Transformer $transformer)
+    {
+        parent::__construct($transformer);
+
+        $this->repository = $repository;
+    }
+
+    /**
+     * @param int $actorId
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function show(int $actorId): Response
+    {
+        return $this->response($this->repository->get($actorId));
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function index(Request $request): Response
+    {
+        $page     = (int)$request->get('page', 1);
+        $pageSize = (int)$request->get('page_size', 15);
+        $items    = $this->repository->all($page, $pageSize);
+        $total    = $this->repository->count();
+
+        //todo: sort out pagination
+        return $this->response($items);
+    }
+
+
+    public function store(Request $request, CommandBus $commandBus): Response
+    {
+        $attributes = json_decode($request->getContent(), true);
+        $command    = new AddActorCommand($attributes);
+        $actor      = $commandBus->execute($command);
+
+        return $this->response($actor, Response::HTTP_CREATED);
+    }
+//
+//    /**
+//     * @param int                            $actorId
+//     * @param \Slim\Http\Request             $request
+//     * @param \Sakila\Command\Bus\CommandBus $commandBus
+//     *
+//     * @return \Slim\Http\Response
+//     */
+//    public function update(int $actorId, Request $request, CommandBus $commandBus): Response
+//    {
+//        $attributes = $request->getParsedBody() ?? [];
+//        $actor      = $commandBus->execute(new UpdateActorCommand($actorId, $attributes));
+//
+//        return $this->response($actor);
+//    }
+//
+//    /**
+//     * @param int $actorId
+//     *
+//     * @return \Slim\Http\Response
+//     */
+//    public function destroy(int $actorId): Response
+//    {
+//        $this->repository->remove($actorId);
+//
+//        return $this->response();
+//    }
+}

@@ -1,0 +1,27 @@
+actors_show:
+    path: /api/actors/{actorId}
+    controller: Sakila\Http\Controllers\Api\ActorController::show
+    methods: [GET]
+    requirements:
+        actorId: \d+
+
+actors_list:
+    path: /api/actors
+    controller: Sakila\Http\Controllers\Api\ActorController::index
+    methods: [GET]
+
+actors_store:
+    path: /api/actors
+    controller: Sakila\Http\Controllers\Api\ActorController::store
+    methods: [POST]
+
+actors_update:
+    path: /api/actors/{actorId}
+    controller: Sakila\Http\Controllers\Api\ActorController::update
+    methods: [PUT]
+
+actors_destroy:
+    path: /api/actors/{actorId}
+    controller: Sakila\Http\Controllers\Api\ActorController::destroy
+    methods: [DELETE]
+

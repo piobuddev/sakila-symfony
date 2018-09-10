@@ -1,0 +1,61 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'en'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    Sakila\:
+        resource: '../app/*'
+        exclude: '../app/{Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    Sakila\Http\Controllers\Api\:
+        resource: '../app/Http/Controllers/Api'
+        tags: ['controller.service_arguments']
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    League\Fractal\Manager: ~
+
+    League\Tactician\CommandBus:
+        factory: ['Sakila\Factories\TacticianCommandBusFactory', create]
+
+    Sakila\Command\Bus\CommandBus: '@Sakila\Command\Bus\TacticianCommandBusAdapter'
+
+    Sakila\Transformer\Transformer: '@Sakila\Transformer\FractalTransformerAdapter'
+
+    Sakila\Entity\Builder: ~
+    Sakila\Entity\Factory: ~
+
+    Sakila\Repository\Database\Table\SimpleNameResolver: ~
+    Sakila\Repository\Database\Table\NameResolver: '@Sakila\Repository\Database\Table\SimpleNameResolver'
+
+    Sakila\Repository\Database\Doctrine\Connection: ~
+    Sakila\Repository\Database\ConnectionInterface: '@Sakila\Repository\Database\Doctrine\Connection'
+
+    Sakila\Entity\FactoryAdapter: ~
+    Sakila\Entity\FactoryInterface: '@Sakila\Entity\FactoryAdapter'
+
+    Sakila\Domain\Actor\Repository\Database\ActorRepository: ~
+    Sakila\Domain\Actor\Repository\ActorRepository: '@Sakila\Domain\Actor\Repository\Database\ActorRepository'
+
+    Sakila\Transformer\ActorTransformer:
+        public: true
+
+    Sakila\Domain\Actor\Entity\Mapper\ActorMapper: ~
+    Sakila\Validators\ActorValidator: ~
+    Sakila\Domain\Actor\Validator\ActorValidator: '@Sakila\Validators\ActorValidator'
+#
+    Sakila\Domain\Actor\Commands\Handlers\ActorHandler:
+        public: true

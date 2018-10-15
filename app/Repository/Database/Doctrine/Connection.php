@@ -2,9 +2,9 @@
 
 namespace Sakila\Repository\Database\Doctrine;
 
-use Doctrine\DBAL\Driver\Connection as DoctrineDBALConnection;
 use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\ORM\EntityManagerInterface;
 use Sakila\Exceptions\UnexpectedValueException;
 use Sakila\Repository\Database\ConnectionInterface;
 use Sakila\Repository\Database\Doctrine\Query\Builder;
@@ -18,11 +18,17 @@ class Connection implements ConnectionInterface
     private $connection;
 
     /**
-     * @param \Doctrine\DBAL\Connection $connection
+     * @var \Doctrine\ORM\EntityManagerInterface
      */
-    public function __construct(DoctrineDBALConnection $connection)
+    private $entityManager;
+
+    /**
+     * @param \Doctrine\ORM\EntityManagerInterface $entityManager
+     */
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->connection = $connection;
+        $this->connection    = $entityManager->getConnection();
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -30,7 +36,7 @@ class Connection implements ConnectionInterface
      */
     public function query(): BuilderInterface
     {
-        return new Builder($this->connection);
+        return new Builder($this->entityManager);
     }
 
     /**

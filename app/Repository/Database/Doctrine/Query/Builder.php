@@ -2,10 +2,9 @@
 
 namespace Sakila\Repository\Database\Doctrine\Query;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Driver\Statement;
-use Sakila\Exceptions\UnexpectedValueException;
+use Doctrine\ORM\EntityManagerInterface;
 use Sakila\Repository\Database\Query\BuilderInterface;
+use Sakila\Utils\StringUtil;
 
 class Builder implements BuilderInterface
 {
@@ -20,12 +19,18 @@ class Builder implements BuilderInterface
     private $query;
 
     /**
-     * @param \Doctrine\DBAL\Connection $connection
+     * @var \Doctrine\ORM\EntityManagerInterface
      */
-    public function __construct(Connection $connection)
+    private $entityManager;
+
+    /**
+     * @param \Doctrine\ORM\EntityManagerInterface $entityManager
+     */
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->connection = $connection;
-        $this->query      = $this->connection->createQueryBuilder();
+        $this->connection    = $entityManager->getConnection();
+        $this->query         = $entityManager->createQueryBuilder();
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -35,9 +40,9 @@ class Builder implements BuilderInterface
      */
     public function select(array $columns = null): BuilderInterface
     {
-        $columns = $columns ?: ['*'];
+        $columns = $columns ?: null;
 
-        $this->query->select(...$columns);
+        $this->query->select($columns);
 
         return $this;
     }
@@ -49,7 +54,14 @@ class Builder implements BuilderInterface
      */
     public function from(string $table): BuilderInterface
     {
-        $this->query->from($table);
+        $repository = sprintf('Sakila:%s', ucfirst($table));
+        $select     = $this->query->getDQLPart('select');
+        $alias      = substr($table, 0, 1);
+        if (empty($select)) {
+            $this->query->select($alias);
+        }
+
+        $this->query->from($repository, $alias);
 
         return $this;
     }
@@ -63,9 +75,11 @@ class Builder implements BuilderInterface
     {
         if (!empty($where)) {
             $binding = [];
-            $i = 0;
+            $alias   = $this->getRootAlias();
+            $i       = 0;
             foreach ($where as $column => $value) {
-                $binding[] = $this->query->expr()->eq($column, '?');
+                $aliasColumn = sprintf('%s.%s', $alias, StringUtil::toCamelCase($column));
+                $binding[]   = $this->query->expr()->eq($aliasColumn, sprintf('?%s', $i));
                 $this->query->setParameter($i++, $value);
             }
 
@@ -83,7 +97,9 @@ class Builder implements BuilderInterface
     public function order(array $order): BuilderInterface
     {
         list($column, $dir) = array_pad($order, 2, 'asc');
-        $this->query->orderBy($column, $dir);
+        $aliasColumn = sprintf('%s.%s', $this->getRootAlias(), $column);
+
+        $this->query->orderBy($aliasColumn, $dir);
 
         return $this;
     }
@@ -102,16 +118,10 @@ class Builder implements BuilderInterface
 
     /**
      * @return array
-     * @throws \Sakila\Exceptions\UnexpectedValueException
      */
     public function get(): array
     {
-        $statement = $this->query->execute();
-        if (!$statement instanceof Statement) {
-            throw new UnexpectedValueException();
-        }
-
-        return $statement->fetchAll();
+        return $this->query->getQuery()->getResult();
     }
 
     /**
@@ -119,21 +129,26 @@ class Builder implements BuilderInterface
      * @param int      $pageSize
      *
      * @return array
-     * @throws \Sakila\Exceptions\UnexpectedValueException
      */
     public function paginate(?int $page, int $pageSize): array
     {
         $page = $page ?: 1;
 
-        $statement = $this->query
+        $this->query
             ->setFirstResult(($page - 1) * $pageSize)
-            ->setMaxResults($pageSize)
-            ->execute();
+            ->setMaxResults($pageSize);
 
-        if (!$statement instanceof Statement) {
-            throw new UnexpectedValueException();
-        }
+        return $this->query->getQuery()->getResult();
+    }
 
-        return $statement->fetchAll();
+    /**
+     * @return string
+     */
+    private function getRootAlias(): string
+    {
+        $aliases = $this->query->getRootAliases();
+        $alias   = array_pop($aliases);
+
+        return $alias ?: '';
     }
 }

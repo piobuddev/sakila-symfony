@@ -3,21 +3,21 @@
 namespace Sakila\Transformer;
 
 use League\Fractal\TransformerAbstract;
-use Sakila\Entity\ActorEntity;
+use Sakila\Entity\Actor;
 
 class ActorTransformer extends TransformerAbstract
 {
     /**
-     * @param \Sakila\Entity\ActorEntity $actor
+     * @param \Sakila\Entity\Actor $actor
      *
      * @return array
      */
-    public function transform(ActorEntity $actor): array
+    public function transform(Actor $actor): array
     {
         return [
-            'actorId'   => $actor->actorId,
-            'firstName' => $actor->firstName,
-            'lastName'  => $actor->lastName,
+            'actorId'   => $actor->getActorId(),
+            'firstName' => $actor->getFirstName(),
+            'lastName'  => $actor->getLastName(),
         ];
     }
 }

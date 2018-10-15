@@ -3,15 +3,15 @@
 namespace Sakila\Http\Controllers\Api;
 
 use Sakila\Command\Bus\CommandBus;
-use Sakila\Domain\Actor\Service\Request\AddActorRequest;
-use Sakila\Domain\Actor\Service\Request\RemoveActorRequest;
-use Sakila\Domain\Actor\Service\Request\ShowActorRequest;
-use Sakila\Domain\Actor\Service\Request\ShowActorsRequest;
-use Sakila\Domain\Actor\Service\Request\UpdateActorRequest;
+use Sakila\Domain\City\Service\Request\AddCityRequest;
+use Sakila\Domain\City\Service\Request\RemoveCityRequest;
+use Sakila\Domain\City\Service\Request\ShowCitiesRequest;
+use Sakila\Domain\City\Service\Request\ShowCityRequest;
+use Sakila\Domain\City\Service\Request\UpdateCityRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ActorController extends AbstractController
+class CityController extends AbstractController
 {
     /**
      * @var \Sakila\Command\Bus\CommandBus
@@ -27,15 +27,15 @@ class ActorController extends AbstractController
     }
 
     /**
-     * @param int $actorId
+     * @param int $cityId
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function show(int $actorId): Response
+    public function show(int $cityId): Response
     {
-        $actor = $this->commandBus->execute(new ShowActorRequest($actorId));
+        $city = $this->commandBus->execute(new ShowCityRequest($cityId));
 
-        return $this->response($actor);
+        return $this->response($city);
     }
 
     /**
@@ -47,9 +47,9 @@ class ActorController extends AbstractController
     {
         $page     = (int)$request->get('page', self::DEFAULT_PAGE);
         $pageSize = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
-        $actors   = $this->commandBus->execute(new ShowActorsRequest($page, $pageSize));
+        $cities   = $this->commandBus->execute(new ShowCitiesRequest($page, $pageSize));
 
-        return $this->response($actors);
+        return $this->response($cities);
     }
 
     /**
@@ -59,34 +59,34 @@ class ActorController extends AbstractController
      */
     public function store(Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
-        $actor = $this->commandBus->execute(new AddActorRequest($data));
+        $data = json_decode((string)$request->getContent(), true);
+        $city = $this->commandBus->execute(new AddCityRequest($data));
 
-        return $this->response($actor, Response::HTTP_CREATED);
+        return $this->response($city, Response::HTTP_CREATED);
     }
 
     /**
-     * @param int                                       $actorId
+     * @param int                                       $cityId
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function update(int $actorId, Request $request): Response
+    public function update(int $cityId, Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
-        $actor = $this->commandBus->execute(new UpdateActorRequest($actorId, $data));
+        $data = json_decode((string)$request->getContent(), true);
+        $city = $this->commandBus->execute(new UpdateCityRequest($cityId, $data));
 
-        return $this->response($actor);
+        return $this->response($city);
     }
 
     /**
-     * @param int $actorId
+     * @param int $cityId
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function destroy(int $actorId): Response
+    public function destroy(int $cityId): Response
     {
-        $this->commandBus->execute(new RemoveActorRequest($actorId));
+        $this->commandBus->execute(new RemoveCityRequest($cityId));
 
         return $this->response();
     }

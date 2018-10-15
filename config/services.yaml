@@ -24,6 +24,10 @@ services:
         resource: '../app/Http/Controllers/Api'
         tags: ['controller.service_arguments']
 
+    Sakila\EventListener\RequestListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     League\Fractal\Manager: ~
@@ -47,15 +51,56 @@ services:
     Sakila\Entity\FactoryAdapter: ~
     Sakila\Entity\FactoryInterface: '@Sakila\Entity\FactoryAdapter'
 
+
     Sakila\Domain\Actor\Repository\Database\ActorRepository: ~
     Sakila\Domain\Actor\Repository\ActorRepository: '@Sakila\Domain\Actor\Repository\Database\ActorRepository'
 
-    Sakila\Transformer\ActorTransformer:
+    Sakila\Transformer\ActorTransformer: ~
+    Sakila\Domain\Actor\Entity\Transformer\ActorTransformerInterface:
+        alias: Sakila\Transformer\ActorTransformer
         public: true
 
     Sakila\Domain\Actor\Entity\Mapper\ActorMapper: ~
     Sakila\Validators\ActorValidator: ~
     Sakila\Domain\Actor\Validator\ActorValidator: '@Sakila\Validators\ActorValidator'
-#
-    Sakila\Domain\Actor\Commands\Handlers\ActorHandler:
+
+    Sakila\Domain\Actor\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/Actor/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/Actor/Service/Request'
+        public: true
+
+
+    Sakila\Domain\Address\Repository\Database\AddressRepository: ~
+    Sakila\Domain\Address\Repository\AddressRepository: '@Sakila\Domain\Address\Repository\Database\AddressRepository'
+
+    Sakila\Transformer\AddressTransformer: ~
+    Sakila\Domain\Address\Entity\Transformer\AddressTransformerInterface:
+        alias: Sakila\Transformer\AddressTransformer
+        public: true
+
+    Sakila\Domain\Address\Entity\Mapper\AddressMapper: ~
+    Sakila\Validators\AddressValidator: ~
+    Sakila\Domain\Address\Validator\AddressValidator: '@Sakila\Validators\AddressValidator'
+
+    Sakila\Domain\Address\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/Address/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/Address/Service/Request'
+        public: true
+
+
+    Sakila\Domain\City\Repository\Database\CityRepository: ~
+    Sakila\Domain\City\Repository\CityRepository: '@Sakila\Domain\City\Repository\Database\CityRepository'
+
+    Sakila\Transformer\CityTransformer: ~
+    Sakila\Domain\City\Entity\Transformer\CityTransformerInterface:
+        alias: Sakila\Transformer\CityTransformer
+        public: true
+
+    Sakila\Domain\City\Entity\Mapper\CityMapper: ~
+    Sakila\Validators\CityValidator: ~
+    Sakila\Domain\City\Validator\CityValidator: '@Sakila\Validators\CityValidator'
+
+    Sakila\Domain\City\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/City/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/City/Service/Request'
         public: true

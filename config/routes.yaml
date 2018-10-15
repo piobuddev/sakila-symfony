@@ -25,3 +25,56 @@ actors_destroy:
     controller: Sakila\Http\Controllers\Api\ActorController::destroy
     methods: [DELETE]
 
+addresses_show:
+    path: /api/addresses/{addressId}
+    controller: Sakila\Http\Controllers\Api\AddressController::show
+    methods: [GET]
+    requirements:
+        addressId: \d+
+
+addresses_list:
+    path: /api/addresses
+    controller: Sakila\Http\Controllers\Api\AddressController::index
+    methods: [GET]
+
+addresses_store:
+    path: /api/addresses
+    controller: Sakila\Http\Controllers\Api\AddressController::store
+    methods: [POST]
+
+addresses_update:
+    path: /api/addresses/{addressId}
+    controller: Sakila\Http\Controllers\Api\AddressController::update
+    methods: [PUT]
+
+addresses_destroy:
+    path: /api/addresses/{addressId}
+    controller: Sakila\Http\Controllers\Api\AddressController::destroy
+    methods: [DELETE]
+
+cities_show:
+    path: /api/cities/{cityId}
+    controller: Sakila\Http\Controllers\Api\CityController::show
+    methods: [GET]
+    requirements:
+        cityId: \d+
+
+cities_list:
+    path: /api/cities
+    controller: Sakila\Http\Controllers\Api\CityController::index
+    methods: [GET]
+
+cities_store:
+    path: /api/cities
+    controller: Sakila\Http\Controllers\Api\CityController::store
+    methods: [POST]
+
+cities_update:
+    path: /api/cities/{cityId}
+    controller: Sakila\Http\Controllers\Api\CityController::update
+    methods: [PUT]
+
+cities_destroy:
+    path: /api/cities/{cityId}
+    controller: Sakila\Http\Controllers\Api\CityController::destroy
+    methods: [DELETE]

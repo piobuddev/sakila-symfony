@@ -2,10 +2,7 @@
 
 namespace Sakila\Transformer;
 
-use Illuminate\Pagination\LengthAwarePaginator;
-use Laravel\Lumen\Application;
 use League\Fractal\Manager;
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\Serializer\ArraySerializer;
@@ -51,16 +48,26 @@ class FractalTransformerAdapter implements Transformer
     }
 
     /**
-     * @param mixed  $data
-     * @param string $transformer
+     * @param mixed    $data
+     * @param string   $transformer
+     * @param int|null $page
+     * @param int|null $pageSize
+     * @param int|null $total
      *
      * @return array
      */
-    public function collection($data, string $transformer = null): array
-    {
+    public function collection(
+        $data,
+        string $transformer = null,
+        int $page = null,
+        int $pageSize = null,
+        int $total = null
+    ): array {
         $collection = new Collection($data, $this->resolveTransformer($transformer));
-        if ($data instanceof SimplePaginator) {
-            $collection->setPaginator($data);
+        if (null !== $page) {
+            $collection->setPaginator(
+                new SimplePaginator($data, $total, $pageSize, $page)
+            );
         }
 
         return $this->manager->createData($collection)->toArray();

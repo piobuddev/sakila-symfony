@@ -6,9 +6,9 @@ use League\Tactician\CommandBus;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
 use League\Tactician\Handler\Locator\CallableLocator;
-use League\Tactician\Handler\MethodNameInflector\HandleClassNameWithoutSuffixInflector;
 use Psr\Container\ContainerInterface;
 use ReflectionClass;
+use Sakila\Command\ExecuteInflector;
 
 class TacticianCommandBusFactory
 {
@@ -19,7 +19,7 @@ class TacticianCommandBusFactory
      */
     public static function create(ContainerInterface $c): CommandBus
     {
-        $inflector     = new HandleClassNameWithoutSuffixInflector();
+        $inflector     = new ExecuteInflector();
         $nameExtractor = new ClassNameExtractor();
         $locator       = new CallableLocator(
             function ($command) use ($c) {
@@ -43,14 +43,14 @@ class TacticianCommandBusFactory
     private static function resolveHandler(string $command): string
     {
         $reflection       = new ReflectionClass($command);
-        $handlerNamespace = $reflection->getNamespaceName() . '\Handlers\\';
+        $handlerNamespace = str_replace('Request', '', $reflection->getNamespaceName());
         $chunks           = (array)preg_split(
             '/(?=[A-Z])/',
-            str_replace('Command', '', lcfirst($reflection->getShortName()))
+            str_replace('Request', '', $reflection->getShortName())
         );
 
         array_shift($chunks);
 
-        return $handlerNamespace . implode($chunks) . 'Handler';
+        return $handlerNamespace . implode($chunks) . 'Service';
     }
 }

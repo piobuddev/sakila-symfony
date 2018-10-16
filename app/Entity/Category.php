@@ -18,7 +18,7 @@ class Category extends AbstractEntity
     private $lastUpdate = 'CURRENT_TIMESTAMP';
 
     /**
-     * @var bool
+     * @var int
      */
     private $categoryId;
 

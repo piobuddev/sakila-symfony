@@ -104,3 +104,21 @@ services:
         resource: '../vendor/piobuddev/sakila/src/Domain/City/Service/*'
         exclude: '../vendor/piobuddev/sakila/src/Domain/City/Service/Request'
         public: true
+
+
+    Sakila\Domain\Category\Repository\Database\CategoryRepository: ~
+    Sakila\Domain\Category\Repository\CategoryRepository: '@Sakila\Domain\Category\Repository\Database\CategoryRepository'
+
+    Sakila\Transformer\CategoryTransformer: ~
+    Sakila\Domain\Category\Entity\Transformer\CategoryTransformerInterface:
+        alias: Sakila\Transformer\CategoryTransformer
+        public: true
+
+    Sakila\Domain\Category\Entity\Mapper\CategoryMapper: ~
+    Sakila\Validators\CategoryValidator: ~
+    Sakila\Domain\Category\Validator\CategoryValidator: '@Sakila\Validators\CategoryValidator'
+
+    Sakila\Domain\Category\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/Category/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/Category/Service/Request'
+        public: true

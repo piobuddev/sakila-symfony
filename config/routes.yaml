@@ -78,3 +78,30 @@ cities_destroy:
     path: /api/cities/{cityId}
     controller: Sakila\Http\Controllers\Api\CityController::destroy
     methods: [DELETE]
+
+categories_show:
+    path: /api/categories/{categoryId}
+    controller: Sakila\Http\Controllers\Api\CategoryController::show
+    methods: [GET]
+    requirements:
+        categoryId: \d+
+
+categories_list:
+    path: /api/categories
+    controller: Sakila\Http\Controllers\Api\CategoryController::index
+    methods: [GET]
+
+categories_store:
+    path: /api/categories
+    controller: Sakila\Http\Controllers\Api\CategoryController::store
+    methods: [POST]
+
+categories_update:
+    path: /api/categories/{categoryId}
+    controller: Sakila\Http\Controllers\Api\CategoryController::update
+    methods: [PUT]
+
+categories_destroy:
+    path: /api/categories/{categoryId}
+    controller: Sakila\Http\Controllers\Api\CategoryController::destroy
+    methods: [DELETE]

@@ -17,7 +17,7 @@
         <option name="default">CURRENT_TIMESTAMP</option>
       </options>
     </field>
-    <field name="countryId" type="smallint" column="country_id"/>
+    <field name="countryId" type="integer" column="country_id"/>
     <many-to-one field="country" target-entity="Country" fetch="LAZY">
       <join-columns>
         <join-column name="country_id" referenced-column-name="country_id"/>

@@ -12,7 +12,7 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="cityId" type="smallint" column="city_id"/>
+    <field name="cityId" type="integer" column="city_id"/>
     <field name="address2" type="string" column="address2" length="50" nullable="true">
       <options>
         <option name="fixed"/>

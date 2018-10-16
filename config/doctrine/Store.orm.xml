@@ -7,7 +7,7 @@
     <unique-constraints>
       <unique-constraint name="idx_unique_manager" columns="manager_staff_id"/>
     </unique-constraints>
-    <id name="storeId" type="boolean" column="store_id">
+    <id name="storeId" type="integer" column="store_id">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="lastUpdate" type="datetime" column="last_update" nullable="false">

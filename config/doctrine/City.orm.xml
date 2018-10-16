@@ -4,7 +4,7 @@
     <indexes>
       <index name="idx_fk_country_id" columns="country_id"/>
     </indexes>
-    <id name="cityId" type="smallint" column="city_id">
+    <id name="cityId" type="integer" column="city_id">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="city" type="string" column="city" length="50" nullable="false">

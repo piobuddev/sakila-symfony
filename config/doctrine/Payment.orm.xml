@@ -6,7 +6,7 @@
       <index name="idx_fk_customer_id" columns="customer_id"/>
       <index name="fk_payment_rental" columns="rental_id"/>
     </indexes>
-    <id name="paymentId" type="smallint" column="payment_id">
+    <id name="paymentId" type="integer" column="payment_id">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="amount" type="decimal" column="amount" precision="5" scale="2" nullable="false"/>

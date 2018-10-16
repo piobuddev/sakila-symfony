@@ -4,7 +4,7 @@
     <indexes>
       <index name="idx_actor_last_name" columns="last_name"/>
     </indexes>
-    <id name="actorId" type="smallint" column="actor_id">
+    <id name="actorId" type="integer" column="actor_id">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="firstName" type="string" column="first_name" length="45" nullable="false">

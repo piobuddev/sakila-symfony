@@ -5,7 +5,7 @@
       <index name="idx_fk_store_id" columns="store_id"/>
       <index name="idx_fk_address_id" columns="address_id"/>
     </indexes>
-    <id name="staffId" type="boolean" column="staff_id">
+    <id name="staffId" type="integer" column="staff_id">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="firstName" type="string" column="first_name" length="45" nullable="false">

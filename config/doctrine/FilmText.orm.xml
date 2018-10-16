@@ -4,7 +4,7 @@
     <indexes>
       <index name="idx_title_description" columns="title,description"/>
     </indexes>
-    <id name="filmId" type="smallint" column="film_id">
+    <id name="filmId" type="integer" column="film_id">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="title" type="string" column="title" length="255" nullable="false">

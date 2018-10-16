@@ -6,7 +6,7 @@
       <index name="idx_fk_address_id" columns="address_id"/>
       <index name="idx_last_name" columns="last_name"/>
     </indexes>
-    <id name="customerId" type="smallint" column="customer_id">
+    <id name="customerId" type="integer" column="customer_id">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="firstName" type="string" column="first_name" length="45" nullable="false">

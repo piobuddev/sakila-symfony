@@ -23,9 +23,19 @@ class Inventory extends AbstractEntity
     private $film;
 
     /**
+     * @var int
+     */
+    private $filmId;
+
+    /**
      * @var \Sakila\Entity\Store
      */
     private $store;
+
+    /**
+     * @var int
+     */
+    private $storeId;
 
 
     /**
@@ -108,5 +118,45 @@ class Inventory extends AbstractEntity
     public function getStore()
     {
         return $this->store;
+    }
+
+    /**
+     * @param int $filmId
+     *
+     * @return Inventory
+     */
+    public function setFilmId(int $filmId): Inventory
+    {
+        $this->filmId = $filmId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFilmId(): int
+    {
+        return $this->filmId;
+    }
+
+    /**
+     * @param int $storeId
+     *
+     * @return Inventory
+     */
+    public function setStoreId(int $storeId): Inventory
+    {
+        $this->storeId = $storeId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStoreId(): int
+    {
+        return $this->storeId;
     }
 }

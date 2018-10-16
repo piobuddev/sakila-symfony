@@ -33,14 +33,29 @@ class Payment extends AbstractEntity
     private $customer;
 
     /**
+     * @var int
+     */
+    private $customerId;
+
+    /**
      * @var \Sakila\Entity\Rental
      */
     private $rental;
 
     /**
+     * @var int
+     */
+    private $rentalId;
+
+    /**
      * @var \Sakila\Entity\Staff
      */
     private $staff;
+
+    /**
+     * @var int
+     */
+    private $staffId;
 
 
     /**
@@ -195,5 +210,65 @@ class Payment extends AbstractEntity
     public function getStaff()
     {
         return $this->staff;
+    }
+
+    /**
+     * @param int $customerId
+     *
+     * @return Payment
+     */
+    public function setCustomerId(int $customerId): Payment
+    {
+        $this->customerId = $customerId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCustomerId(): int
+    {
+        return $this->customerId;
+    }
+
+    /**
+     * @param int $staffId
+     *
+     * @return Payment
+     */
+    public function setStaffId(int $staffId): Payment
+    {
+        $this->staffId = $staffId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStaffId(): int
+    {
+        return $this->staffId;
+    }
+
+    /**
+     * @param int $rentalId
+     *
+     * @return Payment
+     */
+    public function setRentalId(int $rentalId): Payment
+    {
+        $this->rentalId = $rentalId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRentalId(): int
+    {
+        return $this->rentalId;
     }
 }

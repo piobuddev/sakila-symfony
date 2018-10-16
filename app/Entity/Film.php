@@ -68,9 +68,19 @@ class Film extends AbstractEntity
     private $language;
 
     /**
+     * @var int
+     */
+    private $languageId;
+
+    /**
      * @var \Sakila\Entity\Language
      */
     private $originalLanguage;
+
+    /**
+     * @var int
+     */
+    private $originalLanguageId;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -87,7 +97,7 @@ class Film extends AbstractEntity
      */
     public function __construct()
     {
-        $this->actor = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->actor    = new \Doctrine\Common\Collections\ArrayCollection();
         $this->category = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -459,5 +469,45 @@ class Film extends AbstractEntity
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * @param int $languageId
+     *
+     * @return Film
+     */
+    public function setLanguageId(int $languageId): Film
+    {
+        $this->languageId = $languageId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLanguageId(): int
+    {
+        return $this->languageId;
+    }
+
+    /**
+     * @param int $originalLanguageId
+     *
+     * @return Film
+     */
+    public function setOriginalLanguageId(int $originalLanguageId): Film
+    {
+        $this->originalLanguageId = $originalLanguageId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOriginalLanguageId(): int
+    {
+        return $this->originalLanguageId;
     }
 }

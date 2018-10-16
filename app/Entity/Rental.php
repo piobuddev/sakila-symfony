@@ -33,14 +33,29 @@ class Rental extends AbstractEntity
     private $customer;
 
     /**
+     * @var int
+     */
+    private $customerId;
+
+    /**
      * @var \Sakila\Entity\Inventory
      */
     private $inventory;
 
     /**
+     * @var int
+     */
+    private $inventoryId;
+
+    /**
      * @var \Sakila\Entity\Staff
      */
     private $staff;
+
+    /**
+     * @var int
+     */
+    private $staffId;
 
 
     /**
@@ -195,5 +210,65 @@ class Rental extends AbstractEntity
     public function getStaff()
     {
         return $this->staff;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInventoryId(): int
+    {
+        return $this->inventoryId;
+    }
+
+    /**
+     * @param int $inventoryId
+     *
+     * @return \Sakila\Entity\Rental
+     */
+    public function setInventoryId(int $inventoryId): Rental
+    {
+        $this->inventoryId = $inventoryId;
+
+        return $this;
+    }
+
+    /**
+     * @param int $customerId
+     *
+     * @return Rental
+     */
+    public function setCustomerId(int $customerId): Rental
+    {
+        $this->customerId = $customerId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCustomerId(): int
+    {
+        return $this->customerId;
+    }
+
+    /**
+     * @param int $staffId
+     *
+     * @return Rental
+     */
+    public function setStaffId(int $staffId): Rental
+    {
+        $this->staffId = $staffId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStaffId(): int
+    {
+        return $this->staffId;
     }
 }

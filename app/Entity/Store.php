@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sakila\Entity;
 
-/**
- * Store
- */
+use DateTime;
+
 class Store extends AbstractEntity
 {
     /**
@@ -13,7 +12,7 @@ class Store extends AbstractEntity
     private $lastUpdate = 'CURRENT_TIMESTAMP';
 
     /**
-     * @var bool
+     * @var int
      */
     private $storeId;
 
@@ -23,9 +22,19 @@ class Store extends AbstractEntity
     private $address;
 
     /**
+     * @var int
+     */
+    private $addressId;
+
+    /**
      * @var \Sakila\Entity\Staff
      */
     private $managerStaff;
+
+    /**
+     * @var int
+     */
+    private $managerStaffId;
 
 
     /**
@@ -35,7 +44,7 @@ class Store extends AbstractEntity
      *
      * @return Store
      */
-    public function setLastUpdate($lastUpdate)
+    public function setLastUpdate($lastUpdate): Store
     {
         $this->lastUpdate = $lastUpdate;
 
@@ -47,7 +56,7 @@ class Store extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getLastUpdate()
+    public function getLastUpdate(): DateTime
     {
         return $this->lastUpdate;
     }
@@ -55,9 +64,9 @@ class Store extends AbstractEntity
     /**
      * Get storeId.
      *
-     * @return bool
+     * @return int
      */
-    public function getStoreId()
+    public function getStoreId(): int
     {
         return $this->storeId;
     }
@@ -69,7 +78,7 @@ class Store extends AbstractEntity
      *
      * @return Store
      */
-    public function setAddress(\Sakila\Entity\Address $address = null)
+    public function setAddress(Address $address = null): Store
     {
         $this->address = $address;
 
@@ -81,7 +90,7 @@ class Store extends AbstractEntity
      *
      * @return \Sakila\Entity\Address|null
      */
-    public function getAddress()
+    public function getAddress(): ? Address
     {
         return $this->address;
     }
@@ -93,7 +102,7 @@ class Store extends AbstractEntity
      *
      * @return Store
      */
-    public function setManagerStaff(\Sakila\Entity\Staff $managerStaff = null)
+    public function setManagerStaff(Staff $managerStaff = null): Store
     {
         $this->managerStaff = $managerStaff;
 
@@ -105,8 +114,48 @@ class Store extends AbstractEntity
      *
      * @return \Sakila\Entity\Staff|null
      */
-    public function getManagerStaff()
+    public function getManagerStaff(): ? Staff
     {
         return $this->managerStaff;
+    }
+
+    /**
+     * @return int
+     */
+    public function getManagerStaffId(): int
+    {
+        return $this->managerStaffId;
+    }
+
+    /**
+     * @param int $managerStaffId
+     *
+     * @return \Sakila\Entity\Store
+     */
+    public function setManagerStaffId(int $managerStaffId): Store
+    {
+        $this->managerStaffId = $managerStaffId;
+
+        return $this;
+    }
+
+    /**
+     * @param int $addressId
+     *
+     * @return Store
+     */
+    public function setAddressId(int $addressId): Store
+    {
+        $this->addressId = $addressId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAddressId(): int
+    {
+        return $this->addressId;
     }
 }

@@ -48,9 +48,19 @@ class Customer extends AbstractEntity
     private $address;
 
     /**
+     * @var int
+     */
+    private $addressId;
+
+    /**
      * @var \Sakila\Entity\Store
      */
     private $store;
+
+    /**
+     * @var int
+     */
+    private $storeId;
 
 
     /**
@@ -253,5 +263,45 @@ class Customer extends AbstractEntity
     public function getStore()
     {
         return $this->store;
+    }
+
+    /**
+     * @param int $storeId
+     *
+     * @return Customer
+     */
+    public function setStoreId(int $storeId): Customer
+    {
+        $this->storeId = $storeId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStoreId(): int
+    {
+        return $this->storeId;
+    }
+
+    /**
+     * @param int $addressId
+     *
+     * @return Customer
+     */
+    public function setAddressId(int $addressId): Customer
+    {
+        $this->addressId = $addressId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAddressId(): int
+    {
+        return $this->addressId;
     }
 }

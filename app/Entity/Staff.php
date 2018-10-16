@@ -58,9 +58,19 @@ class Staff extends AbstractEntity
     private $address;
 
     /**
+     * @var int
+     */
+    private $addressId;
+
+    /**
      * @var \Sakila\Entity\Store
      */
     private $store;
+
+    /**
+     * @var int
+     */
+    private $storeId;
 
 
     /**
@@ -311,5 +321,45 @@ class Staff extends AbstractEntity
     public function getStore()
     {
         return $this->store;
+    }
+
+    /**
+     * @param int $addressId
+     *
+     * @return Staff
+     */
+    public function setAddressId(int $addressId): Staff
+    {
+        $this->addressId = $addressId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAddressId(): int
+    {
+        return $this->addressId;
+    }
+
+    /**
+     * @param int $storeId
+     *
+     * @return Staff
+     */
+    public function setStoreId(int $storeId): Staff
+    {
+        $this->storeId = $storeId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStoreId(): int
+    {
+        return $this->storeId;
     }
 }

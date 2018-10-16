@@ -47,7 +47,7 @@ class PaymentController extends AbstractController
     {
         $page     = (int)$request->get('page', self::DEFAULT_PAGE);
         $pageSize = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
-        $payments   = $this->commandBus->execute(new ShowPaymentsRequest($page, $pageSize));
+        $payments = $this->commandBus->execute(new ShowPaymentsRequest($page, $pageSize));
 
         return $this->response($payments);
     }
@@ -59,7 +59,7 @@ class PaymentController extends AbstractController
      */
     public function store(Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
+        $data    = json_decode((string)$request->getContent(), true);
         $payment = $this->commandBus->execute(new AddPaymentRequest($data));
 
         return $this->response($payment, Response::HTTP_CREATED);
@@ -73,7 +73,7 @@ class PaymentController extends AbstractController
      */
     public function update(int $paymentId, Request $request): Response
     {
-        $data = json_decode((string)$request->getContent(), true);
+        $data    = json_decode((string)$request->getContent(), true);
         $payment = $this->commandBus->execute(new UpdatePaymentRequest($paymentId, $data));
 
         return $this->response($payment);

@@ -5,8 +5,8 @@ namespace Sakila\Http\Controllers\Api;
 use Sakila\Command\Bus\CommandBus;
 use Sakila\Domain\Inventory\Service\Request\AddInventoryRequest;
 use Sakila\Domain\Inventory\Service\Request\RemoveInventoryRequest;
-use Sakila\Domain\Inventory\Service\Request\ShowInventoryRequest;
 use Sakila\Domain\Inventory\Service\Request\ShowInventoriesRequest;
+use Sakila\Domain\Inventory\Service\Request\ShowInventoryRequest;
 use Sakila\Domain\Inventory\Service\Request\UpdateInventoryRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,9 +45,9 @@ class InventoryController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $page     = (int)$request->get('page', self::DEFAULT_PAGE);
-        $pageSize = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
-        $inventories   = $this->commandBus->execute(new ShowInventoriesRequest($page, $pageSize));
+        $page        = (int)$request->get('page', self::DEFAULT_PAGE);
+        $pageSize    = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
+        $inventories = $this->commandBus->execute(new ShowInventoriesRequest($page, $pageSize));
 
         return $this->response($inventories);
     }
@@ -59,7 +59,7 @@ class InventoryController extends AbstractController
      */
     public function store(Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
+        $data      = json_decode((string)$request->getContent(), true);
         $inventory = $this->commandBus->execute(new AddInventoryRequest($data));
 
         return $this->response($inventory, Response::HTTP_CREATED);
@@ -73,7 +73,7 @@ class InventoryController extends AbstractController
      */
     public function update(int $inventoryId, Request $request): Response
     {
-        $data = json_decode((string)$request->getContent(), true);
+        $data      = json_decode((string)$request->getContent(), true);
         $inventory = $this->commandBus->execute(new UpdateInventoryRequest($inventoryId, $data));
 
         return $this->response($inventory);

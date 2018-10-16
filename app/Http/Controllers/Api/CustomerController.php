@@ -45,9 +45,9 @@ class CustomerController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $page     = (int)$request->get('page', self::DEFAULT_PAGE);
-        $pageSize = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
-        $customers   = $this->commandBus->execute(new ShowCustomersRequest($page, $pageSize));
+        $page      = (int)$request->get('page', self::DEFAULT_PAGE);
+        $pageSize  = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
+        $customers = $this->commandBus->execute(new ShowCustomersRequest($page, $pageSize));
 
         return $this->response($customers);
     }
@@ -59,7 +59,7 @@ class CustomerController extends AbstractController
      */
     public function store(Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
+        $data     = json_decode((string)$request->getContent(), true);
         $customer = $this->commandBus->execute(new AddCustomerRequest($data));
 
         return $this->response($customer, Response::HTTP_CREATED);
@@ -73,7 +73,7 @@ class CustomerController extends AbstractController
      */
     public function update(int $customerId, Request $request): Response
     {
-        $data = json_decode((string)$request->getContent(), true);
+        $data     = json_decode((string)$request->getContent(), true);
         $customer = $this->commandBus->execute(new UpdateCustomerRequest($customerId, $data));
 
         return $this->response($customer);

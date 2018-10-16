@@ -5,8 +5,8 @@ namespace Sakila\Http\Controllers\Api;
 use Sakila\Command\Bus\CommandBus;
 use Sakila\Domain\Category\Service\Request\AddCategoryRequest;
 use Sakila\Domain\Category\Service\Request\RemoveCategoryRequest;
-use Sakila\Domain\Category\Service\Request\ShowCategoryRequest;
 use Sakila\Domain\Category\Service\Request\ShowCategoriesRequest;
+use Sakila\Domain\Category\Service\Request\ShowCategoryRequest;
 use Sakila\Domain\Category\Service\Request\UpdateCategoryRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,9 +45,9 @@ class CategoryController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $page     = (int)$request->get('page', self::DEFAULT_PAGE);
-        $pageSize = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
-        $categories   = $this->commandBus->execute(new ShowCategoriesRequest($page, $pageSize));
+        $page       = (int)$request->get('page', self::DEFAULT_PAGE);
+        $pageSize   = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
+        $categories = $this->commandBus->execute(new ShowCategoriesRequest($page, $pageSize));
 
         return $this->response($categories);
     }
@@ -59,7 +59,7 @@ class CategoryController extends AbstractController
      */
     public function store(Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
+        $data     = json_decode((string)$request->getContent(), true);
         $category = $this->commandBus->execute(new AddCategoryRequest($data));
 
         return $this->response($category, Response::HTTP_CREATED);
@@ -73,7 +73,7 @@ class CategoryController extends AbstractController
      */
     public function update(int $categoryId, Request $request): Response
     {
-        $data = json_decode((string)$request->getContent(), true);
+        $data     = json_decode((string)$request->getContent(), true);
         $category = $this->commandBus->execute(new UpdateCategoryRequest($categoryId, $data));
 
         return $this->response($category);

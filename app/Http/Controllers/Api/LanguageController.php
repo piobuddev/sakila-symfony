@@ -45,9 +45,9 @@ class LanguageController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $page     = (int)$request->get('page', self::DEFAULT_PAGE);
-        $pageSize = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
-        $languages   = $this->commandBus->execute(new ShowLanguagesRequest($page, $pageSize));
+        $page      = (int)$request->get('page', self::DEFAULT_PAGE);
+        $pageSize  = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
+        $languages = $this->commandBus->execute(new ShowLanguagesRequest($page, $pageSize));
 
         return $this->response($languages);
     }
@@ -59,7 +59,7 @@ class LanguageController extends AbstractController
      */
     public function store(Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
+        $data     = json_decode((string)$request->getContent(), true);
         $language = $this->commandBus->execute(new AddLanguageRequest($data));
 
         return $this->response($language, Response::HTTP_CREATED);
@@ -73,7 +73,7 @@ class LanguageController extends AbstractController
      */
     public function update(int $languageId, Request $request): Response
     {
-        $data = json_decode((string)$request->getContent(), true);
+        $data     = json_decode((string)$request->getContent(), true);
         $language = $this->commandBus->execute(new UpdateLanguageRequest($languageId, $data));
 
         return $this->response($language);

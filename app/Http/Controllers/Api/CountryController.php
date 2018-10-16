@@ -5,8 +5,8 @@ namespace Sakila\Http\Controllers\Api;
 use Sakila\Command\Bus\CommandBus;
 use Sakila\Domain\Country\Service\Request\AddCountryRequest;
 use Sakila\Domain\Country\Service\Request\RemoveCountryRequest;
-use Sakila\Domain\Country\Service\Request\ShowCountryRequest;
 use Sakila\Domain\Country\Service\Request\ShowCountriesRequest;
+use Sakila\Domain\Country\Service\Request\ShowCountryRequest;
 use Sakila\Domain\Country\Service\Request\UpdateCountryRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,9 +45,9 @@ class CountryController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $page     = (int)$request->get('page', self::DEFAULT_PAGE);
-        $pageSize = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
-        $countries   = $this->commandBus->execute(new ShowCountriesRequest($page, $pageSize));
+        $page      = (int)$request->get('page', self::DEFAULT_PAGE);
+        $pageSize  = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
+        $countries = $this->commandBus->execute(new ShowCountriesRequest($page, $pageSize));
 
         return $this->response($countries);
     }
@@ -59,7 +59,7 @@ class CountryController extends AbstractController
      */
     public function store(Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
+        $data    = json_decode((string)$request->getContent(), true);
         $country = $this->commandBus->execute(new AddCountryRequest($data));
 
         return $this->response($country, Response::HTTP_CREATED);
@@ -73,7 +73,7 @@ class CountryController extends AbstractController
      */
     public function update(int $countryId, Request $request): Response
     {
-        $data = json_decode((string)$request->getContent(), true);
+        $data    = json_decode((string)$request->getContent(), true);
         $country = $this->commandBus->execute(new UpdateCountryRequest($countryId, $data));
 
         return $this->response($country);

@@ -47,7 +47,7 @@ class FilmController extends AbstractController
     {
         $page     = (int)$request->get('page', self::DEFAULT_PAGE);
         $pageSize = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
-        $films   = $this->commandBus->execute(new ShowFilmsRequest($page, $pageSize));
+        $films    = $this->commandBus->execute(new ShowFilmsRequest($page, $pageSize));
 
         return $this->response($films);
     }
@@ -59,7 +59,7 @@ class FilmController extends AbstractController
      */
     public function store(Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
+        $data = json_decode((string)$request->getContent(), true);
         $film = $this->commandBus->execute(new AddFilmRequest($data));
 
         return $this->response($film, Response::HTTP_CREATED);

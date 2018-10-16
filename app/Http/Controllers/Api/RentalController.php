@@ -47,7 +47,7 @@ class RentalController extends AbstractController
     {
         $page     = (int)$request->get('page', self::DEFAULT_PAGE);
         $pageSize = (int)$request->get('page_size', self::DEFAULT_PAGE_SIZE);
-        $rentals   = $this->commandBus->execute(new ShowRentalsRequest($page, $pageSize));
+        $rentals  = $this->commandBus->execute(new ShowRentalsRequest($page, $pageSize));
 
         return $this->response($rentals);
     }
@@ -59,7 +59,7 @@ class RentalController extends AbstractController
      */
     public function store(Request $request): Response
     {
-        $data  = json_decode((string)$request->getContent(), true);
+        $data   = json_decode((string)$request->getContent(), true);
         $rental = $this->commandBus->execute(new AddRentalRequest($data));
 
         return $this->response($rental, Response::HTTP_CREATED);
@@ -73,7 +73,7 @@ class RentalController extends AbstractController
      */
     public function update(int $rentalId, Request $request): Response
     {
-        $data = json_decode((string)$request->getContent(), true);
+        $data   = json_decode((string)$request->getContent(), true);
         $rental = $this->commandBus->execute(new UpdateRentalRequest($rentalId, $data));
 
         return $this->response($rental);

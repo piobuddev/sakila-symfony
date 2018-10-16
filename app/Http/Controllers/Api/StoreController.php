@@ -73,7 +73,7 @@ class StoreController extends AbstractController
      */
     public function update(int $storeId, Request $request): Response
     {
-        $data = json_decode((string)$request->getContent(), true);
+        $data  = json_decode((string)$request->getContent(), true);
         $store = $this->commandBus->execute(new UpdateStoreRequest($storeId, $data));
 
         return $this->response($store);

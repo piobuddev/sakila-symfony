@@ -122,3 +122,21 @@ services:
         resource: '../vendor/piobuddev/sakila/src/Domain/Category/Service/*'
         exclude: '../vendor/piobuddev/sakila/src/Domain/Category/Service/Request'
         public: true
+
+
+    Sakila\Domain\Country\Repository\Database\CountryRepository: ~
+    Sakila\Domain\Country\Repository\CountryRepository: '@Sakila\Domain\Country\Repository\Database\CountryRepository'
+
+    Sakila\Transformer\CountryTransformer: ~
+    Sakila\Domain\Country\Entity\Transformer\CountryTransformerInterface:
+        alias: Sakila\Transformer\CountryTransformer
+        public: true
+
+    Sakila\Domain\Country\Entity\Mapper\CountryMapper: ~
+    Sakila\Validators\CountryValidator: ~
+    Sakila\Domain\Country\Validator\CountryValidator: '@Sakila\Validators\CountryValidator'
+
+    Sakila\Domain\Country\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/Country/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/Country/Service/Request'
+        public: true

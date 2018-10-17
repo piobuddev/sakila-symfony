@@ -105,3 +105,31 @@ categories_destroy:
     path: /api/categories/{categoryId}
     controller: Sakila\Http\Controllers\Api\CategoryController::destroy
     methods: [DELETE]
+
+
+countries_show:
+    path: /api/countries/{countryId}
+    controller: Sakila\Http\Controllers\Api\CountryController::show
+    methods: [GET]
+    requirements:
+        countryId: \d+
+
+countries_list:
+    path: /api/countries
+    controller: Sakila\Http\Controllers\Api\CountryController::index
+    methods: [GET]
+
+countries_store:
+    path: /api/countries
+    controller: Sakila\Http\Controllers\Api\CountryController::store
+    methods: [POST]
+
+countries_update:
+    path: /api/countries/{countryId}
+    controller: Sakila\Http\Controllers\Api\CountryController::update
+    methods: [PUT]
+
+countries_destroy:
+    path: /api/countries/{countryId}
+    controller: Sakila\Http\Controllers\Api\CountryController::destroy
+    methods: [DELETE]

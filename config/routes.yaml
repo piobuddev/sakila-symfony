@@ -133,3 +133,30 @@ countries_destroy:
     path: /api/countries/{countryId}
     controller: Sakila\Http\Controllers\Api\CountryController::destroy
     methods: [DELETE]
+
+customers_show:
+    path: /api/customers/{customerId}
+    controller: Sakila\Http\Controllers\Api\CustomerController::show
+    methods: [GET]
+    requirements:
+        customerId: \d+
+
+customers_list:
+    path: /api/customers
+    controller: Sakila\Http\Controllers\Api\CustomerController::index
+    methods: [GET]
+
+customers_store:
+    path: /api/customers
+    controller: Sakila\Http\Controllers\Api\CustomerController::store
+    methods: [POST]
+
+customers_update:
+    path: /api/customers/{customerId}
+    controller: Sakila\Http\Controllers\Api\CustomerController::update
+    methods: [PUT]
+
+customers_destroy:
+    path: /api/customers/{customerId}
+    controller: Sakila\Http\Controllers\Api\CustomerController::destroy
+    methods: [DELETE]

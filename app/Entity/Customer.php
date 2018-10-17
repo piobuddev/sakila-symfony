@@ -23,9 +23,9 @@ class Customer extends AbstractEntity
     private $email;
 
     /**
-     * @var bool
+     * @var int
      */
-    private $active = '1';
+    private $active = 1;
 
     /**
      * @var \DateTime
@@ -138,11 +138,11 @@ class Customer extends AbstractEntity
     /**
      * Set active.
      *
-     * @param bool $active
+     * @param int $active
      *
      * @return Customer
      */
-    public function setActive($active)
+    public function setActive(int $active)
     {
         $this->active = $active;
 
@@ -152,9 +152,9 @@ class Customer extends AbstractEntity
     /**
      * Get active.
      *
-     * @return bool
+     * @return int
      */
-    public function getActive()
+    public function getActive(): int
     {
         return $this->active;
     }
@@ -176,11 +176,11 @@ class Customer extends AbstractEntity
     /**
      * Get createDate.
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getCreateDate()
+    public function getCreateDate(): string
     {
-        return $this->createDate;
+        return $this->createDate->format('Y-m-d H:i:s');
     }
 
     /**

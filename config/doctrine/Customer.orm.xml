@@ -24,7 +24,7 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="active" type="boolean" column="active" nullable="false">
+    <field name="active" type="smallint" column="active" nullable="false">
       <options>
         <option name="default">1</option>
       </options>
@@ -35,6 +35,8 @@
         <option name="default">CURRENT_TIMESTAMP</option>
       </options>
     </field>
+    <field name="addressId" type="integer" column="address_id"/>
+    <field name="storeId" type="integer" column="store_id"/>
     <many-to-one field="address" target-entity="Address" fetch="LAZY">
       <join-columns>
         <join-column name="address_id" referenced-column-name="address_id"/>

@@ -187,3 +187,138 @@ films_destroy:
     path: /api/films/{filmId}
     controller: Sakila\Http\Controllers\Api\FilmController::destroy
     methods: [DELETE]
+
+inventory_show:
+    path: /api/inventory/{inventoryId}
+    controller: Sakila\Http\Controllers\Api\InventoryController::show
+    methods: [GET]
+    requirements:
+        inventoryId: \d+
+
+inventory_list:
+    path: /api/inventory
+    controller: Sakila\Http\Controllers\Api\InventoryController::index
+    methods: [GET]
+
+inventory_store:
+    path: /api/inventory
+    controller: Sakila\Http\Controllers\Api\InventoryController::store
+    methods: [POST]
+
+inventory_update:
+    path: /api/inventory/{inventoryId}
+    controller: Sakila\Http\Controllers\Api\InventoryController::update
+    methods: [PUT]
+
+inventory_destroy:
+    path: /api/inventory/{inventoryId}
+    controller: Sakila\Http\Controllers\Api\InventoryController::destroy
+    methods: [DELETE]
+
+languages_show:
+    path: /api/languages/{languageId}
+    controller: Sakila\Http\Controllers\Api\LanguageController::show
+    methods: [GET]
+    requirements:
+        languageId: \d+
+
+languages_list:
+    path: /api/languages
+    controller: Sakila\Http\Controllers\Api\LanguageController::index
+    methods: [GET]
+
+languages_store:
+    path: /api/languages
+    controller: Sakila\Http\Controllers\Api\LanguageController::store
+    methods: [POST]
+
+languages_update:
+    path: /api/languages/{languageId}
+    controller: Sakila\Http\Controllers\Api\LanguageController::update
+    methods: [PUT]
+
+languages_destroy:
+    path: /api/languages/{languageId}
+    controller: Sakila\Http\Controllers\Api\LanguageController::destroy
+    methods: [DELETE]
+
+payments_show:
+    path: /api/payments/{paymentId}
+    controller: Sakila\Http\Controllers\Api\PaymentController::show
+    methods: [GET]
+    requirements:
+        paymentId: \d+
+
+payments_list:
+    path: /api/payments
+    controller: Sakila\Http\Controllers\Api\PaymentController::index
+    methods: [GET]
+
+payments_store:
+    path: /api/payments
+    controller: Sakila\Http\Controllers\Api\PaymentController::store
+    methods: [POST]
+
+payments_update:
+    path: /api/payments/{paymentId}
+    controller: Sakila\Http\Controllers\Api\PaymentController::update
+    methods: [PUT]
+
+payments_destroy:
+    path: /api/payments/{paymentId}
+    controller: Sakila\Http\Controllers\Api\PaymentController::destroy
+    methods: [DELETE]
+
+rentals_show:
+    path: /api/rentals/{rentalId}
+    controller: Sakila\Http\Controllers\Api\RentalController::show
+    methods: [GET]
+    requirements:
+        rentalId: \d+
+
+rentals_list:
+    path: /api/rentals
+    controller: Sakila\Http\Controllers\Api\RentalController::index
+    methods: [GET]
+
+rentals_store:
+    path: /api/rentals
+    controller: Sakila\Http\Controllers\Api\RentalController::store
+    methods: [POST]
+
+rentals_update:
+    path: /api/rentals/{rentalId}
+    controller: Sakila\Http\Controllers\Api\RentalController::update
+    methods: [PUT]
+
+rentals_destroy:
+    path: /api/rentals/{rentalId}
+    controller: Sakila\Http\Controllers\Api\RentalController::destroy
+    methods: [DELETE]
+
+stores_show:
+    path: /api/stores/{storeId}
+    controller: Sakila\Http\Controllers\Api\StoreController::show
+    methods: [GET]
+    requirements:
+        storeId: \d+
+
+stores_list:
+    path: /api/stores
+    controller: Sakila\Http\Controllers\Api\StoreController::index
+    methods: [GET]
+
+stores_store:
+    path: /api/stores
+    controller: Sakila\Http\Controllers\Api\StoreController::store
+    methods: [POST]
+
+stores_update:
+    path: /api/stores/{storeId}
+    controller: Sakila\Http\Controllers\Api\StoreController::update
+    methods: [PUT]
+
+stores_destroy:
+    path: /api/stores/{storeId}
+    controller: Sakila\Http\Controllers\Api\StoreController::destroy
+    methods: [DELETE]

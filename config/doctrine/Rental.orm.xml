@@ -19,16 +19,19 @@
         <option name="default">CURRENT_TIMESTAMP</option>
       </options>
     </field>
+    <field name="customerId" type="integer" column="customer_id"/>
     <many-to-one field="customer" target-entity="Customer" fetch="LAZY">
       <join-columns>
         <join-column name="customer_id" referenced-column-name="customer_id"/>
       </join-columns>
     </many-to-one>
+    <field name="inventoryId" type="integer" column="inventory_id"/>
     <many-to-one field="inventory" target-entity="Inventory" fetch="LAZY">
       <join-columns>
         <join-column name="inventory_id" referenced-column-name="inventory_id"/>
       </join-columns>
     </many-to-one>
+    <field name="staffId" type="integer" column="staff_id"/>
     <many-to-one field="staff" target-entity="Staff" fetch="LAZY">
       <join-columns>
         <join-column name="staff_id" referenced-column-name="staff_id"/>

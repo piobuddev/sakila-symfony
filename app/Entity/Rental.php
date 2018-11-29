@@ -72,14 +72,9 @@ class Rental extends AbstractEntity
         return $this;
     }
 
-    /**
-     * Get rentalDate.
-     *
-     * @return \DateTime
-     */
-    public function getRentalDate()
+    public function getRentalDate(): string
     {
-        return $this->rentalDate;
+        return $this->rentalDate->format('Y-m-d H:i:s');
     }
 
     /**
@@ -96,14 +91,9 @@ class Rental extends AbstractEntity
         return $this;
     }
 
-    /**
-     * Get returnDate.
-     *
-     * @return \DateTime|null
-     */
-    public function getReturnDate()
+    public function getReturnDate():? string
     {
-        return $this->returnDate;
+        return $this->returnDate ? $this->returnDate->format('Y-m-d H:i:s') : null;
     }
 
     /**

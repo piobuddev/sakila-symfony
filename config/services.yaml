@@ -227,3 +227,20 @@ services:
         resource: '../vendor/piobuddev/sakila/src/Domain/Payment/Service/*'
         exclude: '../vendor/piobuddev/sakila/src/Domain/Payment/Service/Request'
         public: true
+
+    Sakila\Domain\Rental\Repository\Database\RentalRepository: ~
+    Sakila\Domain\Rental\Repository\RentalRepository: '@Sakila\Domain\Rental\Repository\Database\RentalRepository'
+
+    Sakila\Transformer\RentalTransformer: ~
+    Sakila\Domain\Rental\Entity\Transformer\RentalTransformerInterface:
+        alias: Sakila\Transformer\RentalTransformer
+        public: true
+
+    Sakila\Domain\Rental\Entity\Mapper\RentalMapper: ~
+    Sakila\Validators\RentalValidator: ~
+    Sakila\Domain\Rental\Validator\RentalValidator: '@Sakila\Validators\RentalValidator'
+
+    Sakila\Domain\Rental\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/Rental/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/Rental/Service/Request'
+        public: true

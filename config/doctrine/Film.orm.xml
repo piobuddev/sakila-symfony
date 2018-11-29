@@ -19,8 +19,8 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="releaseYear" type="date" column="release_year" nullable="true"/>
-    <field name="rentalDuration" type="boolean" column="rental_duration" nullable="false">
+    <field name="releaseYear" type="string" length="4" column="release_year" nullable="true"/>
+    <field name="rentalDuration" type="smallint" column="rental_duration" nullable="false">
       <options>
         <option name="default">3</option>
       </options>
@@ -56,11 +56,13 @@
         <option name="default">CURRENT_TIMESTAMP</option>
       </options>
     </field>
+    <field name="languageId" type="integer" column="language_id"/>
     <many-to-one field="language" target-entity="Language" fetch="LAZY">
       <join-columns>
         <join-column name="language_id" referenced-column-name="language_id"/>
       </join-columns>
     </many-to-one>
+    <field name="originalLanguageId" type="integer" column="original_language_id"/>
     <many-to-one field="originalLanguage" target-entity="Language" fetch="LAZY">
       <join-columns>
         <join-column name="original_language_id" referenced-column-name="language_id"/>

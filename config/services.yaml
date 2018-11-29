@@ -158,3 +158,21 @@ services:
         resource: '../vendor/piobuddev/sakila/src/Domain/Customer/Service/*'
         exclude: '../vendor/piobuddev/sakila/src/Domain/Customer/Service/Request'
         public: true
+
+
+    Sakila\Domain\Film\Repository\Database\FilmRepository: ~
+    Sakila\Domain\Film\Repository\FilmRepository: '@Sakila\Domain\Film\Repository\Database\FilmRepository'
+
+    Sakila\Transformer\FilmTransformer: ~
+    Sakila\Domain\Film\Entity\Transformer\FilmTransformerInterface:
+        alias: Sakila\Transformer\FilmTransformer
+        public: true
+
+    Sakila\Domain\Film\Entity\Mapper\FilmMapper: ~
+    Sakila\Validators\FilmValidator: ~
+    Sakila\Domain\Film\Validator\FilmValidator: '@Sakila\Validators\FilmValidator'
+
+    Sakila\Domain\Film\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/Film/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/Film/Service/Request'
+        public: true

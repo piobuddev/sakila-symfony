@@ -1,10 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sakila\Entity;
 
-/**
- * Film
- */
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 class Film extends AbstractEntity
 {
     /**
@@ -97,316 +97,160 @@ class Film extends AbstractEntity
      */
     public function __construct()
     {
-        $this->actor    = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->actor    = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
-    /**
-     * Set title.
-     *
-     * @param string $title
-     *
-     * @return Film
-     */
-    public function setTitle($title)
+    public function setTitle(string $title): Film
     {
         $this->title = $title;
 
         return $this;
     }
 
-    /**
-     * Get title.
-     *
-     * @return string
-     */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * Set description.
-     *
-     * @param string|null $description
-     *
-     * @return Film
-     */
-    public function setDescription($description = null)
+    public function setDescription($description = null): Film
     {
         $this->description = $description;
 
         return $this;
     }
 
-    /**
-     * Get description.
-     *
-     * @return string|null
-     */
-    public function getDescription()
+    public function getDescription():? string
     {
         return $this->description;
     }
 
-    /**
-     * Set releaseYear.
-     *
-     * @param \DateTime|null $releaseYear
-     *
-     * @return Film
-     */
-    public function setReleaseYear($releaseYear = null)
+    public function setReleaseYear(?string $releaseYear = null): Film
     {
         $this->releaseYear = $releaseYear;
 
         return $this;
     }
 
-    /**
-     * Get releaseYear.
-     *
-     * @return \DateTime|null
-     */
-    public function getReleaseYear()
+    public function getReleaseYear(): int
     {
-        return $this->releaseYear;
+        return (int)$this->releaseYear;
     }
 
-    /**
-     * Set rentalDuration.
-     *
-     * @param bool $rentalDuration
-     *
-     * @return Film
-     */
-    public function setRentalDuration($rentalDuration)
+    public function setRentalDuration(int $rentalDuration): Film
     {
         $this->rentalDuration = $rentalDuration;
 
         return $this;
     }
 
-    /**
-     * Get rentalDuration.
-     *
-     * @return bool
-     */
-    public function getRentalDuration()
+    public function getRentalDuration(): int
     {
         return $this->rentalDuration;
     }
 
-    /**
-     * Set rentalRate.
-     *
-     * @param string $rentalRate
-     *
-     * @return Film
-     */
-    public function setRentalRate($rentalRate)
+    public function setRentalRate(string $rentalRate): Film
     {
         $this->rentalRate = $rentalRate;
 
         return $this;
     }
 
-    /**
-     * Get rentalRate.
-     *
-     * @return string
-     */
-    public function getRentalRate()
+    public function getRentalRate(): string
     {
         return $this->rentalRate;
     }
 
-    /**
-     * Set length.
-     *
-     * @param int|null $length
-     *
-     * @return Film
-     */
-    public function setLength($length = null)
+    public function setLength(?int $length = null): Film
     {
         $this->length = $length;
 
         return $this;
     }
 
-    /**
-     * Get length.
-     *
-     * @return int|null
-     */
-    public function getLength()
+    public function getLength():? int
     {
         return $this->length;
     }
 
-    /**
-     * Set replacementCost.
-     *
-     * @param string $replacementCost
-     *
-     * @return Film
-     */
-    public function setReplacementCost($replacementCost)
+    public function setReplacementCost(string $replacementCost): Film
     {
         $this->replacementCost = $replacementCost;
 
         return $this;
     }
 
-    /**
-     * Get replacementCost.
-     *
-     * @return string
-     */
-    public function getReplacementCost()
+    public function getReplacementCost(): string
     {
         return $this->replacementCost;
     }
 
-    /**
-     * Set rating.
-     *
-     * @param string|null $rating
-     *
-     * @return Film
-     */
-    public function setRating($rating = null)
+    public function setRating(?string $rating = null): Film
     {
         $this->rating = $rating;
 
         return $this;
     }
 
-    /**
-     * Get rating.
-     *
-     * @return string|null
-     */
-    public function getRating()
+    public function getRating():? string
     {
         return $this->rating;
     }
 
-    /**
-     * Set specialFeatures.
-     *
-     * @param array|null $specialFeatures
-     *
-     * @return Film
-     */
-    public function setSpecialFeatures($specialFeatures = null)
+    public function setSpecialFeatures(?array $specialFeatures = null): Film
     {
         $this->specialFeatures = $specialFeatures;
 
         return $this;
     }
 
-    /**
-     * Get specialFeatures.
-     *
-     * @return array|null
-     */
-    public function getSpecialFeatures()
+    public function getSpecialFeatures():? string
     {
-        return $this->specialFeatures;
+        return $this->specialFeatures ? implode(',', $this->specialFeatures) : null;
     }
 
-    /**
-     * Set lastUpdate.
-     *
-     * @param \DateTime $lastUpdate
-     *
-     * @return Film
-     */
-    public function setLastUpdate($lastUpdate)
+    public function setLastUpdate(\DateTime $lastUpdate): Film
     {
         $this->lastUpdate = $lastUpdate;
 
         return $this;
     }
 
-    /**
-     * Get lastUpdate.
-     *
-     * @return \DateTime
-     */
-    public function getLastUpdate()
+    public function getLastUpdate(): \DateTime
     {
         return $this->lastUpdate;
     }
 
-    /**
-     * Get filmId.
-     *
-     * @return int
-     */
-    public function getFilmId()
+    public function getFilmId(): int
     {
         return $this->filmId;
     }
 
-    /**
-     * Set language.
-     *
-     * @param \Sakila\Entity\Language|null $language
-     *
-     * @return Film
-     */
-    public function setLanguage(\Sakila\Entity\Language $language = null)
+    public function setLanguage(Language $language = null): Film
     {
         $this->language = $language;
 
         return $this;
     }
 
-    /**
-     * Get language.
-     *
-     * @return \Sakila\Entity\Language|null
-     */
-    public function getLanguage()
+    public function getLanguage():? Language
     {
         return $this->language;
     }
 
-    /**
-     * Set originalLanguage.
-     *
-     * @param \Sakila\Entity\Language|null $originalLanguage
-     *
-     * @return Film
-     */
-    public function setOriginalLanguage(\Sakila\Entity\Language $originalLanguage = null)
+    public function setOriginalLanguage(Language $originalLanguage = null): Film
     {
         $this->originalLanguage = $originalLanguage;
 
         return $this;
     }
 
-    /**
-     * Get originalLanguage.
-     *
-     * @return \Sakila\Entity\Language|null
-     */
-    public function getOriginalLanguage()
+    public function getOriginalLanguage():? Language
     {
         return $this->originalLanguage;
     }
 
-    /**
-     * Add actor.
-     *
-     * @param \Sakila\Entity\Actor $actor
-     *
-     * @return Film
-     */
-    public function addActor(\Sakila\Entity\Actor $actor)
+    public function addActor(Actor $actor): Film
     {
         $this->actor[] = $actor;
 
@@ -420,7 +264,7 @@ class Film extends AbstractEntity
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeActor(\Sakila\Entity\Actor $actor)
+    public function removeActor(Actor $actor): bool
     {
         return $this->actor->removeElement($actor);
     }
@@ -430,19 +274,12 @@ class Film extends AbstractEntity
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getActor()
+    public function getActor(): Collection
     {
         return $this->actor;
     }
 
-    /**
-     * Add category.
-     *
-     * @param \Sakila\Entity\Category $category
-     *
-     * @return Film
-     */
-    public function addCategory(\Sakila\Entity\Category $category)
+    public function addCategory(Category $category): Film
     {
         $this->category[] = $category;
 
@@ -456,26 +293,16 @@ class Film extends AbstractEntity
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeCategory(\Sakila\Entity\Category $category)
+    public function removeCategory(Category $category): bool
     {
         return $this->category->removeElement($category);
     }
 
-    /**
-     * Get category.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategory()
+    public function getCategory(): Collection
     {
         return $this->category;
     }
 
-    /**
-     * @param int $languageId
-     *
-     * @return Film
-     */
     public function setLanguageId(int $languageId): Film
     {
         $this->languageId = $languageId;
@@ -483,19 +310,11 @@ class Film extends AbstractEntity
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getLanguageId(): int
     {
         return $this->languageId;
     }
 
-    /**
-     * @param int $originalLanguageId
-     *
-     * @return Film
-     */
     public function setOriginalLanguageId(int $originalLanguageId): Film
     {
         $this->originalLanguageId = $originalLanguageId;
@@ -503,10 +322,7 @@ class Film extends AbstractEntity
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getOriginalLanguageId(): int
+    public function getOriginalLanguageId():? int
     {
         return $this->originalLanguageId;
     }

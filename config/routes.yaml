@@ -160,3 +160,30 @@ customers_destroy:
     path: /api/customers/{customerId}
     controller: Sakila\Http\Controllers\Api\CustomerController::destroy
     methods: [DELETE]
+
+films_show:
+    path: /api/films/{filmId}
+    controller: Sakila\Http\Controllers\Api\FilmController::show
+    methods: [GET]
+    requirements:
+        filmId: \d+
+
+films_list:
+    path: /api/films
+    controller: Sakila\Http\Controllers\Api\FilmController::index
+    methods: [GET]
+
+films_store:
+    path: /api/films
+    controller: Sakila\Http\Controllers\Api\FilmController::store
+    methods: [POST]
+
+films_update:
+    path: /api/films/{filmId}
+    controller: Sakila\Http\Controllers\Api\FilmController::update
+    methods: [PUT]
+
+films_destroy:
+    path: /api/films/{filmId}
+    controller: Sakila\Http\Controllers\Api\FilmController::destroy
+    methods: [DELETE]

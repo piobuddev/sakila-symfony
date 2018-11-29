@@ -193,3 +193,20 @@ services:
         resource: '../vendor/piobuddev/sakila/src/Domain/Inventory/Service/*'
         exclude: '../vendor/piobuddev/sakila/src/Domain/Inventory/Service/Request'
         public: true
+
+    Sakila\Domain\Language\Repository\Database\LanguageRepository: ~
+    Sakila\Domain\Language\Repository\LanguageRepository: '@Sakila\Domain\Language\Repository\Database\LanguageRepository'
+
+    Sakila\Transformer\LanguageTransformer: ~
+    Sakila\Domain\Language\Entity\Transformer\LanguageTransformerInterface:
+        alias: Sakila\Transformer\LanguageTransformer
+        public: true
+
+    Sakila\Domain\Language\Entity\Mapper\LanguageMapper: ~
+    Sakila\Validators\LanguageValidator: ~
+    Sakila\Domain\Language\Validator\LanguageValidator: '@Sakila\Validators\LanguageValidator'
+
+    Sakila\Domain\Language\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/Language/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/Language/Service/Request'
+        public: true

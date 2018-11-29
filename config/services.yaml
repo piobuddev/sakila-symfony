@@ -176,3 +176,20 @@ services:
         resource: '../vendor/piobuddev/sakila/src/Domain/Film/Service/*'
         exclude: '../vendor/piobuddev/sakila/src/Domain/Film/Service/Request'
         public: true
+
+    Sakila\Domain\Inventory\Repository\Database\InventoryRepository: ~
+    Sakila\Domain\Inventory\Repository\InventoryRepository: '@Sakila\Domain\Inventory\Repository\Database\InventoryRepository'
+
+    Sakila\Transformer\InventoryTransformer: ~
+    Sakila\Domain\Inventory\Entity\Transformer\InventoryTransformerInterface:
+        alias: Sakila\Transformer\InventoryTransformer
+        public: true
+
+    Sakila\Domain\Inventory\Entity\Mapper\InventoryMapper: ~
+    Sakila\Validators\InventoryValidator: ~
+    Sakila\Domain\Inventory\Validator\InventoryValidator: '@Sakila\Validators\InventoryValidator'
+
+    Sakila\Domain\Inventory\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/Inventory/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/Inventory/Service/Request'
+        public: true

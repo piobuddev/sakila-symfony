@@ -96,14 +96,9 @@ class Payment extends AbstractEntity
         return $this;
     }
 
-    /**
-     * Get paymentDate.
-     *
-     * @return \DateTime
-     */
-    public function getPaymentDate()
+    public function getPaymentDate(): string
     {
-        return $this->paymentDate;
+        return $this->paymentDate->format('Y-m-d H:i:s');
     }
 
     /**

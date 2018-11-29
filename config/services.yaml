@@ -210,3 +210,20 @@ services:
         resource: '../vendor/piobuddev/sakila/src/Domain/Language/Service/*'
         exclude: '../vendor/piobuddev/sakila/src/Domain/Language/Service/Request'
         public: true
+
+    Sakila\Domain\Payment\Repository\Database\PaymentRepository: ~
+    Sakila\Domain\Payment\Repository\PaymentRepository: '@Sakila\Domain\Payment\Repository\Database\PaymentRepository'
+
+    Sakila\Transformer\PaymentTransformer: ~
+    Sakila\Domain\Payment\Entity\Transformer\PaymentTransformerInterface:
+        alias: Sakila\Transformer\PaymentTransformer
+        public: true
+
+    Sakila\Domain\Payment\Entity\Mapper\PaymentMapper: ~
+    Sakila\Validators\PaymentValidator: ~
+    Sakila\Domain\Payment\Validator\PaymentValidator: '@Sakila\Validators\PaymentValidator'
+
+    Sakila\Domain\Payment\Service\:
+        resource: '../vendor/piobuddev/sakila/src/Domain/Payment/Service/*'
+        exclude: '../vendor/piobuddev/sakila/src/Domain/Payment/Service/Request'
+        public: true

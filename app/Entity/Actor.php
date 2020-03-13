@@ -2,9 +2,8 @@
 
 namespace Sakila\Entity;
 
-/**
- * Actor
- */
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Actor extends AbstractEntity
 {
     /**
@@ -32,12 +31,9 @@ class Actor extends AbstractEntity
      */
     private $film;
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
-        $this->film = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->film = new ArrayCollection();
     }
 
     /**
@@ -129,7 +125,7 @@ class Actor extends AbstractEntity
      *
      * @return Actor
      */
-    public function addFilm(\Sakila\Entity\Film $film)
+    public function addFilm(Film $film)
     {
         $this->film[] = $film;
 
@@ -143,7 +139,7 @@ class Actor extends AbstractEntity
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeFilm(\Sakila\Entity\Film $film)
+    public function removeFilm(Film $film)
     {
         return $this->film->removeElement($film);
     }

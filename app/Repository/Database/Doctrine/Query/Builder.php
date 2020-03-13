@@ -14,7 +14,7 @@ class Builder implements BuilderInterface
     private $connection;
 
     /**
-     * @var \Doctrine\DBAL\Query\QueryBuilder
+     * @var \Doctrine\ORM\QueryBuilder
      */
     private $query;
 
@@ -34,7 +34,7 @@ class Builder implements BuilderInterface
     }
 
     /**
-     * @param array $columns
+     * @param array<string> $columns
      *
      * @return \Sakila\Repository\Database\Query\BuilderInterface
      */
@@ -78,7 +78,7 @@ class Builder implements BuilderInterface
             $alias   = $this->getRootAlias();
             $i       = 0;
             foreach ($where as $column => $value) {
-                $aliasColumn = sprintf('%s.%s', $alias, StringUtil::toCamelCase($column));
+                $aliasColumn = sprintf('%s.%s', $alias, StringUtil::toCamelCase((string)$column));
                 $binding[]   = $this->query->expr()->eq($aliasColumn, sprintf('?%s', $i));
                 $this->query->setParameter($i++, $value);
             }

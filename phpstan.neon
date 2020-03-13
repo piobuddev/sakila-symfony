@@ -1,3 +1,7 @@
 parameters:
+	checkMissingIterableValueType: false
+	checkGenericClassInNonGenericObjectType: false
 	ignoreErrors:
-		- '#Parameter \#1 \$function of function call_user_func expects callable.+#'
+		- '/Parameter \#1 \$function of function call_user_func expects callable.+/'
+		- '/\(DateTime\) does not accept default value of type string/'
+		- '/Parameter #1 \$argument of class ReflectionClass constructor expects class\-string\<T of object\>\|T of object, string given/'

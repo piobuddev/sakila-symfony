@@ -18,14 +18,14 @@ class Film extends AbstractEntity
     private $description;
 
     /**
-     * @var \DateTime|null
+     * @var string|null
      */
     private $releaseYear;
 
     /**
-     * @var bool
+     * @var int
      */
-    private $rentalDuration = '3';
+    private $rentalDuration = 3;
 
     /**
      * @var string
@@ -113,7 +113,7 @@ class Film extends AbstractEntity
         return $this->title;
     }
 
-    public function setDescription($description = null): Film
+    public function setDescription(string $description = null): Film
     {
         $this->description = $description;
 

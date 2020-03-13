@@ -41,7 +41,7 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.10.0@dev",
+        "phpstan/phpstan": "^0.12",
         "piobuddev/behat-webapi-extension": "*",
         "piobuddev/repository-tester": "*",
         "squizlabs/php_codesniffer": "*",

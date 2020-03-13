@@ -86,7 +86,7 @@ class Category extends AbstractEntity
     /**
      * Get categoryId.
      *
-     * @return bool
+     * @return int
      */
     public function getCategoryId()
     {

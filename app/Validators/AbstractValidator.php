@@ -26,7 +26,7 @@ abstract class AbstractValidator implements Validator
     {
         $validation = Validation::createValidator()->validate($attributes, $this->getConstrains());
         if (0 !== $validation->count()) {
-            throw new ValidationException($validation->get(0)->getMessage());
+            throw new ValidationException((string)$validation->get(0)->getMessage());
         }
     }
 

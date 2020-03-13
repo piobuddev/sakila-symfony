@@ -39,6 +39,7 @@ class TacticianCommandBusFactory
      * @param string $command
      *
      * @return string
+     * @throws \ReflectionException
      */
     private static function resolveHandler(string $command): string
     {

@@ -28,9 +28,9 @@ class Staff extends AbstractEntity
     private $email;
 
     /**
-     * @var bool
+     * @var int
      */
-    private $active = '1';
+    private $active = 1;
 
     /**
      * @var string
@@ -172,7 +172,7 @@ class Staff extends AbstractEntity
     /**
      * Set active.
      *
-     * @param bool $active
+     * @param int $active
      *
      * @return Staff
      */
@@ -186,7 +186,7 @@ class Staff extends AbstractEntity
     /**
      * Get active.
      *
-     * @return bool
+     * @return int
      */
     public function getActive()
     {

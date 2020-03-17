@@ -23,7 +23,7 @@ $ composer install
 ```
 
 ```sh
-$ echo `127.0.0.1    sakila-lumen.local` >> /etc/hosts
+$ echo `127.0.0.1    sakila-symfony.local` >> /etc/hosts
 ```
 
 Update `.env` and `.env_testing` with DB connection details

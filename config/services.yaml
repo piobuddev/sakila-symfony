@@ -35,15 +35,15 @@ services:
     League\Tactician\CommandBus:
         factory: ['Sakila\Factories\TacticianCommandBusFactory', create]
 
-    Sakila\Command\Bus\CommandBus: '@Sakila\Command\Bus\TacticianCommandBusAdapter'
+    Sakila\Command\Bus\CommandBusInterface: '@Sakila\Command\Bus\TacticianCommandBusAdapter'
 
-    Sakila\Transformer\Transformer: '@Sakila\Transformer\FractalTransformerAdapter'
+    Sakila\Transformer\TransformerInterface: '@Sakila\Transformer\FractalTransformerAdapter'
 
     Sakila\Entity\Builder: ~
     Sakila\Entity\Factory: ~
 
     Sakila\Repository\Database\Table\SimpleNameResolver: ~
-    Sakila\Repository\Database\Table\NameResolver: '@Sakila\Repository\Database\Table\SimpleNameResolver'
+    Sakila\Repository\Database\Table\NameResolverInterface: '@Sakila\Repository\Database\Table\SimpleNameResolver'
 
     Sakila\Repository\Database\Doctrine\Connection: ~
     Sakila\Repository\Database\ConnectionInterface: '@Sakila\Repository\Database\Doctrine\Connection'
@@ -53,7 +53,7 @@ services:
 
 
     Sakila\Domain\Actor\Repository\Database\ActorRepository: ~
-    Sakila\Domain\Actor\Repository\ActorRepository: '@Sakila\Domain\Actor\Repository\Database\ActorRepository'
+    Sakila\Domain\Actor\Repository\ActorRepositoryInterface: '@Sakila\Domain\Actor\Repository\Database\ActorRepository'
 
     Sakila\Transformer\ActorTransformer: ~
     Sakila\Domain\Actor\Entity\Transformer\ActorTransformerInterface:
@@ -62,7 +62,7 @@ services:
 
     Sakila\Domain\Actor\Entity\Mapper\ActorMapper: ~
     Sakila\Validators\ActorValidator: ~
-    Sakila\Domain\Actor\Validator\ActorValidator: '@Sakila\Validators\ActorValidator'
+    Sakila\Domain\Actor\Validator\ActorValidatorInterface: '@Sakila\Validators\ActorValidator'
 
     Sakila\Domain\Actor\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Actor/Service/*'
@@ -71,7 +71,7 @@ services:
 
 
     Sakila\Domain\Address\Repository\Database\AddressRepository: ~
-    Sakila\Domain\Address\Repository\AddressRepository: '@Sakila\Domain\Address\Repository\Database\AddressRepository'
+    Sakila\Domain\Address\Repository\AddressRepositoryInterface: '@Sakila\Domain\Address\Repository\Database\AddressRepository'
 
     Sakila\Transformer\AddressTransformer: ~
     Sakila\Domain\Address\Entity\Transformer\AddressTransformerInterface:
@@ -80,7 +80,7 @@ services:
 
     Sakila\Domain\Address\Entity\Mapper\AddressMapper: ~
     Sakila\Validators\AddressValidator: ~
-    Sakila\Domain\Address\Validator\AddressValidator: '@Sakila\Validators\AddressValidator'
+    Sakila\Domain\Address\Validator\AddressValidatorInterface: '@Sakila\Validators\AddressValidator'
 
     Sakila\Domain\Address\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Address/Service/*'
@@ -89,7 +89,7 @@ services:
 
 
     Sakila\Domain\City\Repository\Database\CityRepository: ~
-    Sakila\Domain\City\Repository\CityRepository: '@Sakila\Domain\City\Repository\Database\CityRepository'
+    Sakila\Domain\City\Repository\CityRepositoryInterface: '@Sakila\Domain\City\Repository\Database\CityRepository'
 
     Sakila\Transformer\CityTransformer: ~
     Sakila\Domain\City\Entity\Transformer\CityTransformerInterface:
@@ -98,7 +98,7 @@ services:
 
     Sakila\Domain\City\Entity\Mapper\CityMapper: ~
     Sakila\Validators\CityValidator: ~
-    Sakila\Domain\City\Validator\CityValidator: '@Sakila\Validators\CityValidator'
+    Sakila\Domain\City\Validator\CityValidatorInterface: '@Sakila\Validators\CityValidator'
 
     Sakila\Domain\City\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/City/Service/*'
@@ -107,7 +107,7 @@ services:
 
 
     Sakila\Domain\Category\Repository\Database\CategoryRepository: ~
-    Sakila\Domain\Category\Repository\CategoryRepository: '@Sakila\Domain\Category\Repository\Database\CategoryRepository'
+    Sakila\Domain\Category\Repository\CategoryRepositoryInterface: '@Sakila\Domain\Category\Repository\Database\CategoryRepository'
 
     Sakila\Transformer\CategoryTransformer: ~
     Sakila\Domain\Category\Entity\Transformer\CategoryTransformerInterface:
@@ -116,7 +116,7 @@ services:
 
     Sakila\Domain\Category\Entity\Mapper\CategoryMapper: ~
     Sakila\Validators\CategoryValidator: ~
-    Sakila\Domain\Category\Validator\CategoryValidator: '@Sakila\Validators\CategoryValidator'
+    Sakila\Domain\Category\Validator\CategoryValidatorInterface: '@Sakila\Validators\CategoryValidator'
 
     Sakila\Domain\Category\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Category/Service/*'
@@ -125,7 +125,7 @@ services:
 
 
     Sakila\Domain\Country\Repository\Database\CountryRepository: ~
-    Sakila\Domain\Country\Repository\CountryRepository: '@Sakila\Domain\Country\Repository\Database\CountryRepository'
+    Sakila\Domain\Country\Repository\CountryRepositoryInterface: '@Sakila\Domain\Country\Repository\Database\CountryRepository'
 
     Sakila\Transformer\CountryTransformer: ~
     Sakila\Domain\Country\Entity\Transformer\CountryTransformerInterface:
@@ -134,7 +134,7 @@ services:
 
     Sakila\Domain\Country\Entity\Mapper\CountryMapper: ~
     Sakila\Validators\CountryValidator: ~
-    Sakila\Domain\Country\Validator\CountryValidator: '@Sakila\Validators\CountryValidator'
+    Sakila\Domain\Country\Validator\CountryValidatorInterface: '@Sakila\Validators\CountryValidator'
 
     Sakila\Domain\Country\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Country/Service/*'
@@ -143,7 +143,7 @@ services:
 
 
     Sakila\Domain\Customer\Repository\Database\CustomerRepository: ~
-    Sakila\Domain\Customer\Repository\CustomerRepository: '@Sakila\Domain\Customer\Repository\Database\CustomerRepository'
+    Sakila\Domain\Customer\Repository\CustomerRepositoryInterface: '@Sakila\Domain\Customer\Repository\Database\CustomerRepository'
 
     Sakila\Transformer\CustomerTransformer: ~
     Sakila\Domain\Customer\Entity\Transformer\CustomerTransformerInterface:
@@ -152,7 +152,7 @@ services:
 
     Sakila\Domain\Customer\Entity\Mapper\CustomerMapper: ~
     Sakila\Validators\CustomerValidator: ~
-    Sakila\Domain\Customer\Validator\CustomerValidator: '@Sakila\Validators\CustomerValidator'
+    Sakila\Domain\Customer\Validator\CustomerValidatorInterface: '@Sakila\Validators\CustomerValidator'
 
     Sakila\Domain\Customer\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Customer/Service/*'
@@ -161,7 +161,7 @@ services:
 
 
     Sakila\Domain\Film\Repository\Database\FilmRepository: ~
-    Sakila\Domain\Film\Repository\FilmRepository: '@Sakila\Domain\Film\Repository\Database\FilmRepository'
+    Sakila\Domain\Film\Repository\FilmRepositoryInterface: '@Sakila\Domain\Film\Repository\Database\FilmRepository'
 
     Sakila\Transformer\FilmTransformer: ~
     Sakila\Domain\Film\Entity\Transformer\FilmTransformerInterface:
@@ -170,7 +170,7 @@ services:
 
     Sakila\Domain\Film\Entity\Mapper\FilmMapper: ~
     Sakila\Validators\FilmValidator: ~
-    Sakila\Domain\Film\Validator\FilmValidator: '@Sakila\Validators\FilmValidator'
+    Sakila\Domain\Film\Validator\FilmValidatorInterface: '@Sakila\Validators\FilmValidator'
 
     Sakila\Domain\Film\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Film/Service/*'
@@ -178,7 +178,7 @@ services:
         public: true
 
     Sakila\Domain\Inventory\Repository\Database\InventoryRepository: ~
-    Sakila\Domain\Inventory\Repository\InventoryRepository: '@Sakila\Domain\Inventory\Repository\Database\InventoryRepository'
+    Sakila\Domain\Inventory\Repository\InventoryRepositoryInterface: '@Sakila\Domain\Inventory\Repository\Database\InventoryRepository'
 
     Sakila\Transformer\InventoryTransformer: ~
     Sakila\Domain\Inventory\Entity\Transformer\InventoryTransformerInterface:
@@ -187,7 +187,7 @@ services:
 
     Sakila\Domain\Inventory\Entity\Mapper\InventoryMapper: ~
     Sakila\Validators\InventoryValidator: ~
-    Sakila\Domain\Inventory\Validator\InventoryValidator: '@Sakila\Validators\InventoryValidator'
+    Sakila\Domain\Inventory\Validator\InventoryValidatorInterface: '@Sakila\Validators\InventoryValidator'
 
     Sakila\Domain\Inventory\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Inventory/Service/*'
@@ -195,7 +195,7 @@ services:
         public: true
 
     Sakila\Domain\Language\Repository\Database\LanguageRepository: ~
-    Sakila\Domain\Language\Repository\LanguageRepository: '@Sakila\Domain\Language\Repository\Database\LanguageRepository'
+    Sakila\Domain\Language\Repository\LanguageRepositoryInterface: '@Sakila\Domain\Language\Repository\Database\LanguageRepository'
 
     Sakila\Transformer\LanguageTransformer: ~
     Sakila\Domain\Language\Entity\Transformer\LanguageTransformerInterface:
@@ -204,7 +204,7 @@ services:
 
     Sakila\Domain\Language\Entity\Mapper\LanguageMapper: ~
     Sakila\Validators\LanguageValidator: ~
-    Sakila\Domain\Language\Validator\LanguageValidator: '@Sakila\Validators\LanguageValidator'
+    Sakila\Domain\Language\Validator\LanguageValidatorInterface: '@Sakila\Validators\LanguageValidator'
 
     Sakila\Domain\Language\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Language/Service/*'
@@ -212,7 +212,7 @@ services:
         public: true
 
     Sakila\Domain\Payment\Repository\Database\PaymentRepository: ~
-    Sakila\Domain\Payment\Repository\PaymentRepository: '@Sakila\Domain\Payment\Repository\Database\PaymentRepository'
+    Sakila\Domain\Payment\Repository\PaymentRepositoryInterface: '@Sakila\Domain\Payment\Repository\Database\PaymentRepository'
 
     Sakila\Transformer\PaymentTransformer: ~
     Sakila\Domain\Payment\Entity\Transformer\PaymentTransformerInterface:
@@ -221,7 +221,7 @@ services:
 
     Sakila\Domain\Payment\Entity\Mapper\PaymentMapper: ~
     Sakila\Validators\PaymentValidator: ~
-    Sakila\Domain\Payment\Validator\PaymentValidator: '@Sakila\Validators\PaymentValidator'
+    Sakila\Domain\Payment\Validator\PaymentValidatorInterface: '@Sakila\Validators\PaymentValidator'
 
     Sakila\Domain\Payment\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Payment/Service/*'
@@ -229,7 +229,7 @@ services:
         public: true
 
     Sakila\Domain\Rental\Repository\Database\RentalRepository: ~
-    Sakila\Domain\Rental\Repository\RentalRepository: '@Sakila\Domain\Rental\Repository\Database\RentalRepository'
+    Sakila\Domain\Rental\Repository\RentalRepositoryInterface: '@Sakila\Domain\Rental\Repository\Database\RentalRepository'
 
     Sakila\Transformer\RentalTransformer: ~
     Sakila\Domain\Rental\Entity\Transformer\RentalTransformerInterface:
@@ -238,7 +238,7 @@ services:
 
     Sakila\Domain\Rental\Entity\Mapper\RentalMapper: ~
     Sakila\Validators\RentalValidator: ~
-    Sakila\Domain\Rental\Validator\RentalValidator: '@Sakila\Validators\RentalValidator'
+    Sakila\Domain\Rental\Validator\RentalValidatorInterface: '@Sakila\Validators\RentalValidator'
 
     Sakila\Domain\Rental\Service\:
         resource: '../vendor/piobuddev/sakila/src/Domain/Rental/Service/*'

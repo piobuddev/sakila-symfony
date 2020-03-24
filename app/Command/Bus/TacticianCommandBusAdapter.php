@@ -3,9 +3,9 @@
 namespace Sakila\Command\Bus;
 
 use League\Tactician\CommandBus as TacticianCommandBus;
-use Sakila\Command\Command;
+use Sakila\Command\CommandInterface;
 
-class TacticianCommandBusAdapter implements CommandBus
+class TacticianCommandBusAdapter implements CommandBusInterface
 {
     /**
      * @var \League\Tactician\CommandBus
@@ -21,11 +21,11 @@ class TacticianCommandBusAdapter implements CommandBus
     }
 
     /**
-     * @param \Sakila\Command\Command $command
+     * @param \Sakila\Command\CommandInterface $command
      *
      * @return mixed
      */
-    public function execute(Command $command)
+    public function execute(CommandInterface $command)
     {
         return $this->commandBus->handle($command);
     }

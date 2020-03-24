@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 use Sakila\Entity\EntityInterface;
 use Sakila\Fractal\SimplePaginator;
 
-class FractalTransformerAdapter implements Transformer
+class FractalTransformerAdapter implements TransformerInterface
 {
     /**
      * @var \League\Fractal\Manager

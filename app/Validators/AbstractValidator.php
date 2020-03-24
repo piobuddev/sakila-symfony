@@ -2,12 +2,12 @@
 
 namespace Sakila\Validators;
 
-use Sakila\Entity\Validator\Validator;
+use Sakila\Entity\Validator\ValidatorInterface;
 use Sakila\Exceptions\Validation\ValidationException;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Validation;
 
-abstract class AbstractValidator implements Validator
+abstract class AbstractValidator implements ValidatorInterface
 {
     private const ALLOW_EXTRA_FIELDS = true;
     private const ALLOW_MISSING_FIELDS = true;
